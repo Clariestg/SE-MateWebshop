@@ -1,0 +1,36 @@
+Code Struktur
+-> domain (entities, useCases)
+-> controller (application)
+-> datenbank (infrastructure)
+-> praesentation
+
+Projekt
+├── Domain
+│   ├── Entities
+│   │   └──  User.java
+│   │   └──  Product.java
+│   ├── UseCases
+│   │   └──  CreateUser.java
+│   └──  Interfaces
+│       └──  IUserRepository.java
+├── Application
+│   ├── UseCases
+│   │   └──  CreateUserHandler.java
+│   └──  Services
+│       └──  UserService.java
+├── Infrastructure
+│   ├── Persistence
+│   │   └──  UserRepository.java
+│   ├── Data
+│   │   └──  DatabaseContext.java
+│   └──  Services
+│       └──  ExternalApi.java
+└── Presentation
+    ├── Controllers
+    │   └──  UserController.java
+    └── Views
+        └──  UserView.java
+
+Datenbank-Schcícht => Klassen mithilfe von IntelliJ importieren
+    (Generieren lassen nachdem die Datenbank-Schema entwickelt wurde)
+
