@@ -1,0 +1,39 @@
+Code Struktur
+-> domain (entities, useCases)
+-> applikation (UseCases)
+-> persistenz (infrastructure, datenbank)
+-> praesentation (GUI)
+
+├── Domain
+│   ├── Entities (Enthält Daten & evtl. einfache Logik wie changePassword())
+│   │   └──  User.java
+│   └── Interfaces
+│       └──  UserRepository.java  // interface
+├── Application
+│   └── Services (Führt Geschäftslogik aus (z.B. Geschäftslogik aus (Regeln prüfen, Objekte erstellen))
+│       └──  UserService.java
+├── Infrastructure
+│   └── Persistence (Speichert/Lädt aus der DB)
+│       └──  UserRepositoryImpl.java // @Repository, JPA etc.
+└── Presentation
+    └── Controllers (Nimmt HTTP-Anfrage entgegen (z.B. POST /user))
+        └──  UserController.java
+
+Domains: Customer, Fulfillment, Order, Billing, Catalog
+Applikation:
+    - definieren, wie die Daten von der Eingabe (z.B. User-Input) verarbeitet werden, um ein bestimmtes Ergebnis zu erzielen
+    - beschreibt, wie das System auf verschiedene Anwendungsfälle oder Szenarien reagieren sollte
+Controller: passt externe Eingaben an den Use Case an, ohne interne Details preiszugeben
+
+Datenbank-Schicht mit JPA
+
+Hilfreiche Videos zum Codieren
+- Login, Registration, Prepared Statements: https://www.youtube.com/watch?v=phYuQWRaazw&list=PLVKnUMsVFUf5sXq9I3cZ--SuTe3SNQK2i&index=4&t=39s
+
+-----Notes zum Verständnis-----
+kleine Methoden → in die Domain-Klasse
+komplexe Abläufe → in eine XYZService im Application-Layer
+
+CreateUserHandler ist ähnlich wie eine Factory, aber mit mehr Verantwortung: kümmert sich um die gesamte Erstellung + Validierung + Übergabe an DB.
+Service ist das Gehirn, das mit Repository (Daten) und Controller (Web) spricht.
+Datenfluss: Controller empfängt Request → ruft Service/Handler auf → dieser nutzt das Repository, um auf DB zuzugreifen → und gibt Antwort zurück
