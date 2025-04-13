@@ -1,7 +1,7 @@
 package com.example.sematewebshop.applikation;
 
 import com.example.sematewebshop.domain.User;
-import com.example.sematewebshop.domain.UserRepository;
+import com.example.sematewebshop.persistenz.UserRepository;
 
 import java.util.Optional;
 

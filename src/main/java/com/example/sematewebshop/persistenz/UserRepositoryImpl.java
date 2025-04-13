@@ -1,9 +1,7 @@
 package com.example.sematewebshop.persistenz;
 
 import com.example.sematewebshop.domain.User;
-import com.example.sematewebshop.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

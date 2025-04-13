@@ -1,4 +1,6 @@
-package com.example.sematewebshop.domain;
+package com.example.sematewebshop.persistenz;
+
+import com.example.sematewebshop.domain.User;
 
 import java.util.Optional;
 
