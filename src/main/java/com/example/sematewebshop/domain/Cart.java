@@ -36,6 +36,10 @@ public class Cart {
         }
         return total;
     }
+    public void removeCartItem(CartItem cartItem) {
+        cartItems.remove(cartItem);
+    }
+
     // Mengensumme aller Items im Cart
     //...
 
