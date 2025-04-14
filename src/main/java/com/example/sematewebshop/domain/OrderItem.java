@@ -16,5 +16,11 @@ public class OrderItem {
     private Product product;
     private int quantity;
     private float price;
+
+    public OrderItem(Product product, int quantity, float price) {
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+    }
 }
 

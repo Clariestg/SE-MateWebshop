@@ -23,8 +23,7 @@ public class Customer {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    public Customer(String customerName, String firstname, String lastname, String password, String email, int phoneNumber, Address address) {
-        this.customerName = customerName;
+    public Customer(String firstname, String lastname, String password, String email, int phoneNumber, Address address) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.customerName = this.firstname + " " + this.lastname;
