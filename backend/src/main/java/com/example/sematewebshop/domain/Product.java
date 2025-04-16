@@ -17,6 +17,7 @@ import static com.example.sematewebshop.domain.ProductStatus.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //DB übernimmt das Hochzählen der ID
+    @Column(name = "product_id")
     private Long productID;
     private String productName;
     private String productDescription;

@@ -14,8 +14,10 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "cart_id")
     private Long cartID;
     @OneToOne
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)

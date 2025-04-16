@@ -14,14 +14,20 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     private Long orderId;
+    @Column(nullable = false)
     private LocalDateTime orderDate;
     @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
     @Enumerated(EnumType.STRING)
-    private OrderStatus status; //PENDING, PROCESSING, PAID, SHIPPED, CANCELLED
-    @OneToMany(cascade = CascadeType.ALL)
+    @Column(nullable = false)
+    private OrderStatus status;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "order_id") // Für unidirektionales Mapping
     private List<OrderItem> orderItems;
+    @Column(nullable = false)
     private float orderTotalPrice;
 
     public Order(LocalDateTime orderDate, Customer customer, OrderStatus status, List<OrderItem> orderItems) {

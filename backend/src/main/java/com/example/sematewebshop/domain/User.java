@@ -2,6 +2,7 @@ package com.example.sematewebshop.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class User {
     private String role; //Enum daraus machen?
@@ -13,7 +14,7 @@ public class User {
     private String hashedPassword;
 
     public boolean checkPassword(String rawPassword) {
-        return BCrypt.chechpw(rawPassword, this.hashedPassword);
+        return BCrypt.checkpw(rawPassword, this.hashedPassword);
     }
 
     public void changeEmail(String newEmail) {
@@ -27,6 +28,5 @@ public class User {
         String hashed = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
         return new User(username, hashed);
     }
-
 
 }

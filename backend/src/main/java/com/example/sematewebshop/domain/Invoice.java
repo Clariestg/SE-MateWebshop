@@ -13,14 +13,24 @@ public class Invoice {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "invoice_id")
         private Long InvoiceID;
+        @Column(nullable = false)
         private LocalDateTime issueDate;
+
         @OneToOne
-        private Customer customer; //Damit alle Rechnungen vom Kunden angezeigt werden können als "BillingHistory"
+        @JoinColumn(name = "customer_id", nullable = false)
+        private Customer customer;
+
         @OneToOne
+        @JoinColumn(name = "order_id", nullable = false)
         private Order order;
+
+        @Column(nullable = false)
         private float totalAmount;
+
         @Enumerated(EnumType.STRING)
+        @Column(nullable = false)
         private PaymentStatus paymentStatus; //PAID, UNPAID, FAILED
 }
 

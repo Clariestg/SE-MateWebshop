@@ -13,6 +13,7 @@ public class Shipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "shippment_id")
     private Long id;
     private LocalDateTime shipmentDepartureDate;
     private LocalDateTime shipmentArrivalDate;

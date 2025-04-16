@@ -1,14 +1,12 @@
-package com.example.sematewebshop.domain;
+package com.example.sematewebshop.model;
 
 import lombok.Getter;
 import lombok.Setter;
-
+@Getter
+@Setter
 public class LoginRequest {
-    @Getter
-    @Setter
+
     private String username;
-    @Getter
-    @Setter
     private String password;
 
 }
