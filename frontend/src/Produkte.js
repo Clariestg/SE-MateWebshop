@@ -55,7 +55,7 @@ function Produkte() {
 
       <div className="produkt-grid">
         {gefiltertUndSortiert().map(produkt => (
-          <Link to={`/produkt/${produkt.id}`} className="produkt-card" key={produkt.id}>
+          <Link to={`/produkt/${produkt.id}`} className="produkt-card no-link-style" key={produkt.id}>
             <img src={produkt.bild} alt={produkt.name} />
             <h3>{produkt.name}</h3>
             <p className="preis">{produkt.preis}</p>
