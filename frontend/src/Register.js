@@ -5,7 +5,7 @@ import './App.css';
 function Register() {
   return (
     <div className="login-container">
-      <Link to="/login" className="back-button">← Zurück zur Anmeldung</Link>
+      
       <h2>Registrieren</h2>
       <form>
         <input type="text" placeholder="Vorname" required />

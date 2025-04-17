@@ -7,7 +7,6 @@ function Home() {
       <header className="hero-section">
         <h1>Yerba Mate – Energie aus der Natur</h1>
         <p>Entdecke die Welt von Mate-Tee – traditionell, belebend und gesund.</p>
-
       </header>
 
       <section className="info-section">

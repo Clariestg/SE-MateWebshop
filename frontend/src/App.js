@@ -8,7 +8,11 @@ import Register from './Register';
 import ForgotPassword from './ForgotPassword';
 import Profile from './Profile';
 import Cart from './Cart';
+import KategorieYerbaMate from './KategorieYerbaMate';
+import KategorieZubehoer from './KategorieZubehoer';
 import Header from './Header';
+import Suche from './Suche';
+import ProduktDetail from './ProduktDetail';
 import './App.css';
 
 function App() {
@@ -23,7 +27,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/profil" element={<Profile />} />
-  <Route path="/warenkorb" element={<Cart />} />
+        <Route path="/warenkorb" element={<Cart />} />
+        <Route path="/kategorie/yerba-mate" element={<KategorieYerbaMate />} />
+        <Route path="/kategorie/zubehoer" element={<KategorieZubehoer />} />
+        <Route path="/suche" element={<Suche />} />
+        <Route path="/produkt/:id" element={<ProduktDetail />} />
 </Routes>
     </Router>
   );

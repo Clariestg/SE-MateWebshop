@@ -30,6 +30,41 @@
   text-decoration: underline;
 }
 
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  color: #333;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+  min-width: 160px;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: normal;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+
 .nav-right {
   display: flex;
   gap: 15px;
@@ -51,10 +86,33 @@
 }
 
 .auth-link.register {
-  background-color: white;
-  color: #4a90e2;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 6px 12px;
+  border: 1px solid white;
+  border-radius: 20px;
+  transition: background 0.3s, color 0.3s;
 }
 
 .auth-link.register:hover {
-  background-color: #e0e0e0;
+  background: white;
+  color: #4a90e2;
+}
+
+.icon-link {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  height: 40px;      /* gleiche Höhe wie Buttons */
+  width: 40px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.icon-link:hover {
+  opacity: 0.7;
 }

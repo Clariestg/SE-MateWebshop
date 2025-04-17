@@ -3,14 +3,11 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
 }
 
-body.dark {
-  background-color: #121212;
-  color: white;
-}
-
-/* Standard Light Mode */
 .App {
   font-family: Arial, sans-serif;
   display: flex;
@@ -21,25 +18,17 @@ body.dark {
   transition: background-color 0.3s ease;
 }
 
-body.dark .App {
-  background-color: #121212;
-}
-
 .login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 10vh;
   background: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  width: 300px;
-  color: black;
-  transition: all 0.3s ease;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
 }
 
-body.dark .login-container {
-  background: #1e1e1e;
-  color: white;
-  box-shadow: 0 0 15px rgba(255,255,255,0.05);
-}
 
 .login-container input {
   width: 100%;
@@ -51,11 +40,6 @@ body.dark .login-container {
   color: black;
 }
 
-body.dark .login-container input {
-  background: #333;
-  color: white;
-  border: 1px solid #555;
-}
 
 .login-container button {
   width: 107%;
@@ -89,24 +73,6 @@ body.dark .login-container button {
 
 .forgot-password a:hover {
   text-decoration: underline;
-}
-
-.darkmode-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 5px 15px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: inherit;
-  background-color: inherit;
-}
-
-.darkmode-toggle:hover {
-  background-color: rgba(200, 200, 200, 0.1);
 }
 
 
@@ -258,4 +224,174 @@ body.dark .login-container button {
   padding: 20px;
   font-size: 0.85rem;
   color: #666;
+}
+
+.produkte-page {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.produkt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.produkt-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.produkt-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.produkt-card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.1rem;
+}
+
+.produkt-card .preis {
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+.produkt-card .beschreibung {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.sortierung {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.sortierung select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.filter-leiste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 25px;
+  align-items: center;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.slider-bereich {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+}
+
+.preis-slider {
+  width: 220px;
+  height: 8px;
+  background: #ccc;
+  border-radius: 4px;
+  position: relative;
+}
+
+
+
+.slider-thumb {
+  height: 18px;
+  width: 18px;
+  background: #4a90e2;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: -5px;
+}
+
+.slider-track {
+  top: 0;
+  bottom: 0;
+  background: #4a90e2;
+  border-radius: 3px;
+}
+
+.suchfeld {
+  display: flex;
+  align-items: center;
+}
+
+.such-input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  outline: none;
+  width: 160px;
+  transition: all 0.3s ease;
+}
+
+.such-input:focus {
+  border-color: #4a90e2;
+  width: 200px;
+}
+
+.produkt-detail-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.produkt-detail {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.produkt-detail img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.detail-info {
+  flex: 1;
+}
+
+.detail-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.detail-info .preis {
+  font-weight: bold;
+  color: #4a90e2;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.detail-info .beschreibung {
+  font-size: 1rem;
+  color: #555;
+}
+
+.no-link-style {
+  text-decoration: none;
+  color: inherit;
 }
