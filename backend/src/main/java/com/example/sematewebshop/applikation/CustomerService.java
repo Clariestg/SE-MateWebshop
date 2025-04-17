@@ -52,6 +52,15 @@ public class CustomerService {
         if(customer.isEmpty()){throw new IllegalStateException("Customer not found");}
         return passwordEncoder.matches(rawPassword, customer.get().getPassword());
     }
+
+    public void forgotPassword(String email) {
+        Optional<Customer> customerOpt = customerRepo.findByEmail(email);
+        if (customerOpt.isEmpty()) {throw new IllegalArgumentException("Customer not found with email: " + email);}
+        // TODO: implementieren, Mail verschicken, etc.
+        System.out.println("Passwort-Zurücksetzung vorbereitet für: " + email);
+    }
+
+
     public void updateProfile(Long customerId, CustomerRegDTO updatedData) {
         Customer existingData = customerRepo.findById(customerId).orElseThrow(() -> new IllegalArgumentException("Customer not found"));
         Address address = new Address(updatedData.getStreet(), updatedData.getNumber(), updatedData.getCity(), updatedData.getZipCode());

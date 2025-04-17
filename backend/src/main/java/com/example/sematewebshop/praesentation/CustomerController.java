@@ -3,6 +3,7 @@ package com.example.sematewebshop.praesentation;
 import com.example.sematewebshop.applikation.CustomerService;
 import com.example.sematewebshop.domain.Customer;
 import com.example.sematewebshop.model.CustomerRegDTO;
+import com.example.sematewebshop.model.ForgotPasswordDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,10 +39,14 @@ public class CustomerController {
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> body) {
-        String username = body.get("username");
+    public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordDTO dto) {
+        try{
         // TODO: Implementieren, evtl. Mail senden etc.
-        return ResponseEntity.ok(Map.of("message", "Passwort-Zurücksetzung ausgelöst (noch nicht implementiert)"));
+            customerService.forgotPassword(dto.getEmail()); //Todo im CustomerService
+            return ResponseEntity.ok("Passwort-Zurücksetzung ausgelöst (noch nicht implementiert)");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Kunde nicht gefunden: " + e.getMessage());
+        }
     }
 
     @GetMapping("/{customerId}/profile")

@@ -29,6 +29,8 @@ public class Order {
     private List<OrderItem> orderItems;
     @Column(nullable = false)
     private float orderTotalPrice;
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod; //CREDIT_CARD, PAYPAL, BANK_TRANSFER, SOFORT, CASH_ON_DELIVERY
 
     public Order(LocalDateTime orderDate, Customer customer, OrderStatus status, List<OrderItem> orderItems) {
         this.orderDate = orderDate;
@@ -36,6 +38,7 @@ public class Order {
         this.status = status;
         this.orderItems = orderItems;
         this.orderTotalPrice = this.getTotal();
+        this.paymentMethod = this.getPaymentMethod();
     }
 
     public void addOrderItem(OrderItem orderItem) {orderItems.add(orderItem);}
