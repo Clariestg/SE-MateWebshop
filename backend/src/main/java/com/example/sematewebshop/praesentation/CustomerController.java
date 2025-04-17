@@ -37,6 +37,13 @@ public class CustomerController {
         }
     }
 
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        // TODO: Implementieren, evtl. Mail senden etc.
+        return ResponseEntity.ok(Map.of("message", "Passwort-Zurücksetzung ausgelöst (noch nicht implementiert)"));
+    }
+
     @GetMapping("/{customerId}/profile")
     public ResponseEntity<Customer> viewProfile(@PathVariable Long customerId) {
         try {
