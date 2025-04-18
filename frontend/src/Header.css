@@ -116,3 +116,16 @@
 .icon-link:hover {
   opacity: 0.7;
 }
+
+.cart-count {
+  position: absolute;
+  top: 10px;       /* etwas tiefer */
+  right: 10px;     /* näher ans Symbol */
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
