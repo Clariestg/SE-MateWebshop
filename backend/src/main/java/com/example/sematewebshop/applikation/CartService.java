@@ -71,7 +71,7 @@ public class CartService {
 
     public List<CartOverviewDTO> viewCart(Long cartId) {
         Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new IllegalArgumentException("Cart not Found"));
-        return (List<CartOverviewDTO>) cartItemRepo.findAllByCart(cart).stream()
+        return cartItemRepo.findAllByCart(cart).stream()
                 .map(cartItem -> new CartOverviewDTO(
                         cartItem.getProduct().getProductName(),
                         cartItem.getProduct().getProductPrice(),

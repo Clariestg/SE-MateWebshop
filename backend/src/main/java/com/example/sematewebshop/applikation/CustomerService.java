@@ -29,6 +29,7 @@ public class CustomerService {
                     dto.getCity(),
                     dto.getZipCode()
             );
+            Cart cart = new Cart();
             Customer newCustomer = new Customer(
                     dto.getFirstName(),
                     dto.getLastName(),
@@ -37,11 +38,8 @@ public class CustomerService {
                     address
             );
             newCustomer.setPassword(passwordEncoder.encode(dto.getPassword()));
-
-            newCustomer = customerRepo.save(newCustomer);
-            Cart cart = new Cart(); // Direkt einen leeren Warenkorb für den neuen Kunden anlegen
-            cart.setCustomer(newCustomer);
-            cartRepo.save(cart);
+            newCustomer.setCart(cart); // Direkt einen leeren Warenkorb für den neuen Kunden anlegen
+            customerRepo.save(newCustomer);
 
         } catch (IllegalStateException e) {
             System.out.println("Error. Could not register Customer" + "/nError Note: " + e);

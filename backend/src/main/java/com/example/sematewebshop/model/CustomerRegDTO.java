@@ -12,7 +12,7 @@ public class CustomerRegDTO { //Auch wenn nicht alles geändert werden soll, mü
     private String lastName;
     private String password;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
 
     private String street;
     private String number;
