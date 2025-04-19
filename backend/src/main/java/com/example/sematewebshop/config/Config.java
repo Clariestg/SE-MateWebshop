@@ -1,4 +1,4 @@
-package com.example.sematewebshop.domain;
+package com.example.sematewebshop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -7,9 +7,11 @@ import com.example.sematewebshop.domain.Customer;
 import com.example.sematewebshop.domain.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
+import java.util.Optional;
 
 public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
     List<Invoice> findByCustomer(Customer customer); //Billing History anzeigen lassen
-
+    List<Invoice> findByCustomerCustomerId(Long customerId);
+    Optional<Invoice> findByOrderOrderId(Long orderId);
 }

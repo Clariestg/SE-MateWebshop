@@ -20,6 +20,11 @@ public class Shipment {
     @OneToOne
     private Order order;
     private String shippers;
+    @Column(unique = true)
     private String trackingNumber;
+    @ManyToOne
+    @JoinColumn(name = "shipping_address_id")
+    private Address shippingAddress;
 }
+
 
