@@ -16,7 +16,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerService {
 
+    @Autowired
     private final CustomerRepository customerRepo;
+    @Autowired
     private final CartRepository cartRepo;
     private final PasswordEncoder passwordEncoder;
 
