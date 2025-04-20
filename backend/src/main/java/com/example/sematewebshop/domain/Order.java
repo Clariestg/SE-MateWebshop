@@ -3,6 +3,7 @@ package com.example.sematewebshop.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,18 +17,15 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long orderId;
-    @Column(nullable = false)
     private LocalDateTime orderDate;
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private OrderStatus status;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id") // Für unidirektionales Mapping
-    private List<OrderItem> orderItems;
-    @Column(nullable = false)
+    private List<OrderItem> orderItems = new ArrayList<>();
     private float orderTotalPrice;
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod; //CREDIT_CARD, PAYPAL, BANK_TRANSFER, SOFORT, CASH_ON_DELIVERY

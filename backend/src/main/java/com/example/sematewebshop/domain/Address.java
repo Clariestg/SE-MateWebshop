@@ -11,17 +11,13 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id") // saubere DB-Spaltenbenennung (optional)
     private Long addressId;
-
-    @Column(nullable = false, length = 100)
     private String street;
 
-    @Column(nullable = false, length = 10)
+    @Column(length = 10)
     private String number; // z.B. "23a"
-
-    @Column(nullable = false, length = 50)
     private String city;
 
-    @Column(name = "zip_code", nullable = false)
+    @Column(name = "zip_code")
     private int zipCode;
 
     public Address(String street, String number, String city, int zipCode) {

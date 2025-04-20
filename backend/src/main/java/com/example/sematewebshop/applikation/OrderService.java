@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,7 @@ public class OrderService {
     //Kaufprozess für ein oder mehrere Produkte starten
     //Orderprozess geht bis der "Bezahlen"-Button gedrückt wird
     public boolean placeOrder(Long customerId){
-        Cart cart = cartRepo.findByCustomerId(customerId).orElseThrow(()-> new IllegalArgumentException("Cart not Found"));
+        Cart cart = cartRepo.findByCustomer_CustomerId(customerId).orElseThrow(()-> new IllegalArgumentException("Cart not Found"));
         Customer customer = cart.getCustomer();
 
         if(cart.getCartItems().isEmpty()){throw new IllegalStateException("Cart is Empty");}
@@ -51,7 +50,7 @@ public class OrderService {
     }
 
     public List<OrderOverviewDTO> viewOrders(Long customerId) {
-        List<Order> orders = orderRepo.findAllByCustomerId(customerId);
+        List<Order> orders = orderRepo.findAllByCustomer_CustomerId(customerId);
         return orders.stream()
                 .map(order -> new OrderOverviewDTO(
                         order.getOrderId(),

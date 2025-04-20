@@ -2,18 +2,12 @@ package com.example.sematewebshop.praesentation;
 
 import com.example.sematewebshop.domain.Product;
 import com.example.sematewebshop.applikation.CatalogService;
+import com.example.sematewebshop.domain.ProductCategory;
 import com.example.sematewebshop.model.ProductDetailDTO;
 import com.example.sematewebshop.model.ProductOverviewDTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
-/* Wir benötigen auch Mapping für konkret einen Produkt
--> Nachdem man auf den Produktname geklickt hat sollte ein neues Fenster sich öffnen
-    mit mehr Details und Warenkorb- und Kaufbutton
-@RequestMapping("/api/produktId")
-*/
 
 @RestController
 @RequestMapping("/api/products")
@@ -22,19 +16,17 @@ public class ProductController {
     private final CatalogService catalogService;
     public ProductController(CatalogService catalogService) {this.catalogService = catalogService;}
 
-
     @GetMapping("/products/overview")
     public List<ProductOverviewDTO> viewAllProducts() { //DTO fürs Best Practice
         return catalogService.viewAllProducts();
     }
-    @GetMapping
-    public List<Product> viewProductsByCategory(String category) {return catalogService.viewProductsByCategory(category);}
-    @GetMapping
-    public List<Product> viewProductsByName(String productName) {return catalogService.viewProductsByName(productName);}
-    @GetMapping
-    public List<Product> viewProductByPrice(float price) {return catalogService.viewProductByPrice(price);}
-
-    @GetMapping("/{productId}")
+    @GetMapping("/by-category")
+    public List<Product> viewProductsByCategory(@RequestParam ProductCategory category) {return catalogService.viewProductsByCategory(category);}
+    @GetMapping("/by-name")
+    public List<Product> viewProductsByName(@RequestParam String productName) {return catalogService.viewProductsByName(productName);}
+    @GetMapping("/by-price")
+    public List<Product> viewProductByPrice(@RequestParam float price) {return catalogService.viewProductByPrice(price);}
+    @GetMapping("/products/{productId}")
     public ResponseEntity<ProductDetailDTO> getProductDetails(@PathVariable Long productId){
         return ResponseEntity.ok(catalogService.viewProductDetails(productId));
     }

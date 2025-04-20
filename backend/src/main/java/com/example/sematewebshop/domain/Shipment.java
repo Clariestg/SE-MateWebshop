@@ -10,11 +10,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Shipment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "shippment_id")
-    private Long id;
+    @Column(name = "shipment_id")
+    private Long shipmentId;
     private LocalDateTime shipmentDepartureDate;
     private LocalDateTime shipmentArrivalDate;
     @OneToOne

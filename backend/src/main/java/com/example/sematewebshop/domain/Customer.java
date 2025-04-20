@@ -12,19 +12,14 @@ public class Customer {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private Long customerID; //auto generated!
+    private Long customerId; //auto generated!
 
-    @Column(nullable = false, updatable = false)
-    private final String role = "customer";
-    @Column(nullable = false, length = 100)
+    @Column(updatable = false)
+    private String role = "customer";
+    @Column(length = 100)
     private String customerName;
-    @Column(nullable = false, length = 50)
-    private String firstname;
-    @Column(nullable = false, length = 50)
-    private String lastname;
-    @Column(nullable = false)
     private String password;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -36,22 +31,22 @@ public class Customer {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    public Customer(String firstname, String lastname, String password, String email, String phoneNumber, Address address) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.customerName = this.firstname + " " + this.lastname;
+    public Customer(String customerName, String password, String email, String phoneNumber, Address address) {
+        this.customerName = customerName;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
-    public Customer(String firstname, String lastname, String email, String phoneNumber, Address address) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.customerName = this.firstname + " " + this.lastname;
+    public Customer(String customerName, String email, String phoneNumber, Address address) {
+        this.customerName = customerName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+    }
+    public Customer(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
     public Customer (){}
 

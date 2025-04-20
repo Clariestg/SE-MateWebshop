@@ -2,6 +2,7 @@
 package com.example.sematewebshop.applikation;
 
 import com.example.sematewebshop.domain.Product;
+import com.example.sematewebshop.domain.ProductCategory;
 import com.example.sematewebshop.model.ProductDetailDTO;
 import com.example.sematewebshop.model.ProductOverviewDTO;
 import com.example.sematewebshop.persistenz.ProductRepository;
@@ -48,7 +49,7 @@ public class CatalogService {
                 ))
                 .collect(Collectors.toList());
     }
-    public List<Product> viewProductsByCategory (String category){
+    public List<Product> viewProductsByCategory (ProductCategory category){
         return productRepo.findAllByProductCategory(category);
     }
     public List<Product> viewProductsByName (String productName){

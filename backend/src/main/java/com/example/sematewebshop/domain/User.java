@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class User {
-    private String role; //Enum daraus machen?
+    private final String role; //Enum daraus machen?
     @Getter
     @Setter
     private String email;

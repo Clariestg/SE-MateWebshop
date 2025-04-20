@@ -62,7 +62,7 @@ public class CartService {
     public void removeProductFromCart(Long cartId, Long productId) {
         Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new IllegalArgumentException("Cart not Found"));
         CartItem cartItem = cart.getCartItems().stream()
-                        .filter(item -> item.getProduct().getProductID().equals(productId))
+                        .filter(item -> item.getProduct().getProductId().equals(productId))
                         .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Product not Found"));
         cart.removeCartItem(cartItem);

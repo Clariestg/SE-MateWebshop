@@ -8,8 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class CustomerRegDTO { //Auch wenn nicht alles geändert werden soll, müssen alle Daten übergeben werden
-    private String firstName;
-    private String lastName;
+    private String customerName;
     private String password;
     private String email;
     private String phoneNumber;

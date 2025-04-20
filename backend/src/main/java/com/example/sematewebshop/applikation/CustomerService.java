@@ -31,8 +31,7 @@ public class CustomerService {
             );
             Cart cart = new Cart();
             Customer newCustomer = new Customer(
-                    dto.getFirstName(),
-                    dto.getLastName(),
+                    dto.getCustomerName(),
                     dto.getEmail(),
                     dto.getPhoneNumber(),
                     address
@@ -62,9 +61,7 @@ public class CustomerService {
     public void updateProfile(Long customerId, CustomerRegDTO updatedData) {
         Customer existingData = customerRepo.findById(customerId).orElseThrow(() -> new IllegalArgumentException("Customer not found"));
         Address address = new Address(updatedData.getStreet(), updatedData.getNumber(), updatedData.getCity(), updatedData.getZipCode());
-        existingData.setFirstname(updatedData.getFirstName());
-        existingData.setLastname(updatedData.getLastName());
-        existingData.setCustomerName(updatedData.getFirstName() + updatedData.getLastName());
+        existingData.setCustomerName(updatedData.getCustomerName());
         existingData.setEmail(updatedData.getEmail());
         existingData.setPassword(updatedData.getPassword());
         existingData.setPhoneNumber(updatedData.getPhoneNumber());

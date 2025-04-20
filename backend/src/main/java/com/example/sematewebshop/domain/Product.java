@@ -18,7 +18,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //DB übernimmt das Hochzählen der ID
     @Column(name = "product_id")
-    private Long productID;
+    private Long productId;
     private String productName;
     private String productDescription;
     private float productPrice;

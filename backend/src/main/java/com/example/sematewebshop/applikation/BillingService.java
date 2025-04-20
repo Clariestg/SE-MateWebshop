@@ -3,7 +3,6 @@ package com.example.sematewebshop.applikation;
 import com.example.sematewebshop.domain.*;
 import com.example.sematewebshop.model.InvoiceDTO;
 import com.example.sematewebshop.persistenz.CartRepository;
-import com.example.sematewebshop.persistenz.CustomerRepository;
 import com.example.sematewebshop.persistenz.InvoiceRepository;
 import com.example.sematewebshop.persistenz.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 public class BillingService {
     private final OrderRepository orderRepo;
     private final InvoiceRepository invoiceRepo;
-    private final CustomerRepository customerRepo;
     private final CartRepository cartRepo;
 
     //z.B. PayPal, Karte etc.
@@ -32,7 +30,7 @@ public class BillingService {
     public void payOrder(Long customerId, Long orderId) {
         Order order = orderRepo.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Order not found"));
-        if (!order.getCustomer().getCustomerID().equals(customerId)) {throw new IllegalStateException("Order does not belong to this customer");}
+        if (!order.getCustomer().getCustomerId().equals(customerId)) {throw new IllegalStateException("Order does not belong to this customer");}
 
         if (order.getStatus() != OrderStatus.PENDING) {throw new IllegalStateException("Order is already paid or cancelled");} //If: Processing, Shipped, Delivered or Cancelled
 
@@ -50,7 +48,7 @@ public class BillingService {
         invoiceRepo.save(invoice);
 
         // Warenkorb leeren
-        Cart cart = cartRepo.findByCustomerId(customerId)
+        Cart cart = cartRepo.findByCustomer_CustomerId(customerId)
                 .orElseThrow(() -> new IllegalArgumentException("Cart not found"));
         cart.clearCart();
         cartRepo.save(cart);
@@ -60,7 +58,7 @@ public class BillingService {
         Invoice invoice = invoiceRepo.findByOrderOrderId(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Invoice not found for this order"));
         return new InvoiceDTO(
-                invoice.getInvoiceID(),
+                invoice.getInvoiceId(),
                 invoice.getIssueDate(),
                 invoice.getTotalAmount(),
                 invoice.getPaymentStatus()
@@ -68,10 +66,10 @@ public class BillingService {
     }
 
     public List<InvoiceDTO> getAllInvoices(Long customerId) {
-        List<Invoice> invoices = invoiceRepo.findByCustomerCustomerId(customerId);
+        List<Invoice> invoices = invoiceRepo.findByCustomer_CustomerId(customerId);
         return invoices.stream()
                 .map(invoice -> new InvoiceDTO(
-                        invoice.getInvoiceID(),
+                        invoice.getInvoiceId(),
                         invoice.getIssueDate(),
                         invoice.getTotalAmount(),
                         invoice.getPaymentStatus()
