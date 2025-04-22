@@ -1,6 +1,7 @@
 package com.example.sematewebshop.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +30,8 @@ public class Customer {
     private Address address;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @JsonManagedReference
+    private Cart cart; //bidirektionale Beziehungen
 
     public Customer(String customerName, String password, String email, String phoneNumber, Address address) {
         this.customerName = customerName;

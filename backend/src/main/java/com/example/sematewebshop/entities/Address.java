@@ -6,10 +6,11 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id") // saubere DB-Spaltenbenennung (optional)
+    @Column(name = "address_id")
     private Long addressId;
     private String street;
 

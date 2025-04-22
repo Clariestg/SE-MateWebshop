@@ -19,7 +19,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/**").permitAll()
                         .anyRequest().permitAll()
                 )//zum Testen deaktiviert
-                .csrf(csrf -> csrf.disable()); // <-- NEU: innerhalb eines Lambdas
+                .csrf(csrf -> csrf.disable());
         return http.build();
     }
 

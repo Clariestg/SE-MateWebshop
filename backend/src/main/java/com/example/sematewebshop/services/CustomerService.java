@@ -37,9 +37,9 @@ public class CustomerService {
         );
         newCustomer.setPassword(passwordEncoder.encode(dto.getPassword()));
         newCustomer.setCart(cart); // Direkt einen leeren Warenkorb für den neuen Kunden anlegen
+        customerRepo.save(newCustomer);
         cart.setCustomer(newCustomer);
         cartRepo.save(cart);
-        customerRepo.save(newCustomer);
         return newCustomer.getCustomerId();
     }
     public boolean loginCustomer(String email, String rawPassword){

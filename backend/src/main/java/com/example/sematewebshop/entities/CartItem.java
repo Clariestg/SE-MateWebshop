@@ -8,6 +8,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(
+        name = "cart_item",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"cart_id", "product_id"})
+)
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +19,7 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
     private int quantity;

@@ -47,6 +47,7 @@ public class CartService {
         // Wenn das Produkt noch nicht im Warenkorb ist, neues CartItem hinzufügen
         CartItem newItem = new CartItem(product, quantity);
         cart.addCartItem(newItem); //Zum Warenkorb hinzugefügt
+        newItem.setCart(cart);
         cartItemRepo.save(newItem);
     }
 
@@ -73,6 +74,7 @@ public class CartService {
         Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new IllegalArgumentException("Cart not Found"));
         return cartItemRepo.findAllByCart(cart).stream()
                 .map(cartItem -> new CartOverviewDTO(
+                        cartItem.getCartItemId(),
                         cartItem.getProduct().getProductName(),
                         cartItem.getProduct().getProductPrice(),
                         cartItem.getQuantity(),

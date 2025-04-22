@@ -5,6 +5,7 @@ import com.example.sematewebshop.entities.Order;
 import com.example.sematewebshop.entities.OrderStatus;
 import com.example.sematewebshop.entities.Shipment;
 import com.example.sematewebshop.dtos.ShipmentDTO;
+import com.example.sematewebshop.repositories.AddressRepository;
 import com.example.sematewebshop.repositories.OrderRepository;
 import com.example.sematewebshop.repositories.ShipmentRepository;
 import lombok.AllArgsConstructor;
@@ -20,15 +21,18 @@ import java.util.UUID;
 public class FulfillmentService {
     private final OrderRepository orderRepo;
     private final ShipmentRepository shipmentRepo;
+    private final AddressRepository addressRepo;
 
     //Adresse auswählen
-    public void selectShippingAddress(Long orderId, Address shippingAddress) {
-        Order order = orderRepo.findById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found"));
-        Shipment shipment = shipmentRepo.findByOrder(order).orElseGet(() -> new Shipment());
+    public void selectShippingAddress(Long orderId, Address address) {
+        Address savedAddress = addressRepo.save(address);
+        Order order = orderRepo.findById(orderId).orElseThrow(() -> new IllegalStateException("Order not Found"));
+        Shipment shipment = new Shipment();
         shipment.setOrder(order);
-        shipment.setShippingAddress(shippingAddress);
+        shipment.setShippingAddress(savedAddress);
         shipmentRepo.save(shipment);
     }
+
 
     public List<String> getShippingOptions() { //Überflüssig fürs Prototyp
         return List.of("STANDARD", "EXPRESS", "OVERNIGHT");
@@ -47,11 +51,12 @@ public class FulfillmentService {
     }
 
     public void createShipment(Long orderId) {
-        Order order = orderRepo.findById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found"));
-        if(shipmentRepo.existsByOrder(order)) {throw new IllegalArgumentException("Shipment already exists for this order");}
-
-        Shipment shipment = new Shipment();
-        shipment.setOrder(order);
+        Order order = orderRepo.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found"));
+        Shipment shipment = shipmentRepo.findByOrder(order) // Shipment sollte mit Adresse schon existieren
+                .orElseThrow(() -> new IllegalArgumentException("Shipment must be created with shipping address first"));
+        if (shipment.getTrackingNumber() != null) {throw new IllegalArgumentException("Shipment already completed for this order");}
+        
         shipment.setShippers(selectRandomShipper());
         shipment.setTrackingNumber(generateTrackingNumber());
         shipment.setShipmentDepartureDate(LocalDateTime.now());

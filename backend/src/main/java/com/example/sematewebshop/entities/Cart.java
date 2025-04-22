@@ -1,6 +1,7 @@
 //Fürs „später kaufen“
 package com.example.sematewebshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,8 @@ public class Cart {
     private Long cartId;
     @OneToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JsonBackReference
+    private Customer customer; //bidirektionale Beziehungen
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems = new ArrayList<>();

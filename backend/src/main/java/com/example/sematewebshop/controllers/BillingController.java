@@ -16,10 +16,15 @@ public class BillingController {
 
     private final BillingService billingService;
 
-    //Zahlungsmethode
+    //Optionen anzeigen
+    @GetMapping("/payment-methods")
+    public ResponseEntity<PaymentMethod[]> getAllPaymentMethods() {
+        return ResponseEntity.ok(PaymentMethod.values());
+    }
+    //Zahlungsmethode wählen
     @PostMapping("/order/{orderId}/payment-method")
     public ResponseEntity<Void> selectPaymentMethod(@PathVariable Long orderId, @RequestBody PaymentMethod paymentMethod) {
-        billingService.selectPaymentMethod(orderId, paymentMethod);
+        billingService.selectPaymentMethod(orderId, paymentMethod); //CREDIT_CARD, PAYPAL, BANK_TRANSFER, SOFORT, CASH_ON_DELIVERY
         return ResponseEntity.ok().build();
     }
     //Zahlen

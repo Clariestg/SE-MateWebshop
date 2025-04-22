@@ -25,9 +25,9 @@ public class ProductController {
     @GetMapping("/by-name")
     public List<Product> viewProductsByName(@RequestParam String productName) {return catalogService.viewProductsByName(productName);}
 
-    @GetMapping("/by-price")
+    @GetMapping("/by-price-less")
     public List<Product> viewProductByPriceIsLess(@RequestParam float price) {return catalogService.viewProductByPriceIsLess(price);}
-    @GetMapping("/by-price")
+    @GetMapping("/by-price-range")
     public List<Product> viewProductByPriceIsBetween(@RequestParam float priceLow, float priceHigh) {return catalogService.viewProductByPriceIsBetween(priceLow, priceHigh);}
 
     @GetMapping("/products/{productId}")

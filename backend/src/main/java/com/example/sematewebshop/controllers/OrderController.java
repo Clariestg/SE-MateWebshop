@@ -28,7 +28,7 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to place order.");
     }
 
-    //Kunden ruft die Bestellungsseite auf - alle Bestellungen anzeigen als Dashboard
+    //Kunde ruft die Bestellungsseite auf - alle Bestellungen anzeigen als Dashboard
     @GetMapping("/view/{customerId}")
     public ResponseEntity<List<OrderOverviewDTO>> viewOrders(@PathVariable Long customerId) {
         List<OrderOverviewDTO> orderOverview = orderService.viewOrders(customerId);

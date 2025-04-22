@@ -22,12 +22,11 @@ public class CatalogService {
     private final RequestMappingHandlerAdapter repositoryExporterHandlerAdapter;
 
     //Geschäftslogik Methoden
-    public boolean isProductNameAvailable(String newProductName) {
+    public void isProductNameAvailable(String newProductName) {
         Optional<Product> product = productRepo.findByProductNameContainingIgnoreCase(newProductName);
         if (product.isPresent()) {
             throw new IllegalArgumentException("Product name is not available");
         }
-        return true;
     }
 
     //Anzeige-Methoden für Controller
@@ -67,7 +66,7 @@ public class CatalogService {
 
     //POST bzw. Request Methoden für Controller
     public Product createProduct (Product product){
-        if(!isProductNameAvailable(product.getProductName())){throw new IllegalStateException("Product name already exists");}
+        isProductNameAvailable(product.getProductName());
         validateProduct(product);
         return productRepo.save(product);
     }
@@ -102,7 +101,7 @@ public class CatalogService {
 
     //Validate Zusatzmethode statt DTO
     private void validateProduct(Product product) {
-        if (product.getProductName() == null || product.getProductName().trim().isEmpty()) {throw new IllegalArgumentException("Product name must not be empty");}
+        if (product.getProductName() == null || product.getProductName().trim().isEmpty()){}
         if (product.getProductPrice() <= 0) {throw new IllegalArgumentException("Price must be greater than 0");}
         if (product.getProductQuantity() < 0) {throw new IllegalArgumentException("Quantity cannot be negative");}
         if (product.getProductCategory() == null) {throw new IllegalArgumentException("Product category must be selected");}

@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "orders") //order ist ein reserviertes SQL-Schlüsselwort
 public class Order {
 
     @Id
